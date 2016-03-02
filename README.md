@@ -35,15 +35,15 @@ requests on a child object should also include a parent element.
 
 ## Planning
 
-![one-to-many](/planning/IMG1_one-to-many.jpg)
+![one-to-many](/image/IMG1_one-to-many.jpg)
 
 Two models with a one to many relationship.
 
-![relationship](/planning/IMG2_relationship.jpg)
+![relationship](/image/IMG2_relationship.jpg)
 
 Class Relationships
 
-![dbtables](/planning/IMG3_tables.jpg)
+![dbtables](/image/IMG3_tables.jpg)
 
 Parents and Children Tables
 
@@ -126,3 +126,14 @@ created app/controllers/parents_controller.rb and app/controllers/children_contr
 added routes
 
 added gem 'rack-cors', :require => 'rack/cors' to gemfile, bundle install
+
+
+## nested JSON arrays in DHC
+
+![parents](/image/screenshot_parents.png)
+
+request on parent includes children
+
+![child1](/image/screenshot_child1.png)
+
+request on child includes parent
