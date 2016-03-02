@@ -1,23 +1,23 @@
 class ParentsController < ApplicationController
 
-  def index   # view *all* parents
+  def index    # GET, *all* parents
     render json: Parent.all
   end
 
-  def show    # view *one* parent
+  def show     # GET, *one* parent
     render json: Parent.find(params[:id])
   end
 
-  def create
+  def created  # POST
     parent = Parent.create(parent_params)
     if parent.save
-      render json: parent
+      render json: parent, status: :created, location: parent
     else
       render json: parent.errors, status: :unprocessable_entity
     end
   end
 
-  def update
+  def update   # PATCH
     parent = Parent.find(params[:id])
     if parent.update(parent_params)
       parent.save
@@ -25,11 +25,6 @@ class ParentsController < ApplicationController
     else
       render json: parent.errors, status: :unprocessable_entity
     end
-  end
-
-  def destroy
-    parent = Parent.find(params[:id])
-    parent.destroy
   end
 
   private
