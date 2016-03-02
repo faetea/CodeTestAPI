@@ -1,11 +1,11 @@
 class ParentsController < ApplicationController
 
   def index    # GET, *all* parents
-    render json: Parent.all
+    render json: Parent.all.as_json(include: [:children])
   end
 
   def show     # GET, *one* parent
-    render json: Parent.find(params[:id])
+    render json: Parent.find(params[:id]).as_json(include: [:children])
   end
 
   def created  # POST
