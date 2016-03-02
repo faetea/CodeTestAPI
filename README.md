@@ -1,8 +1,8 @@
 # Code Test API
 
-## Prompt:
+## Prompt
 
-Create a simple RESTful API in either Python using sqlalchemy and Flask or in Ruby using Rails and ActiveRecord. Use PostgreSQL or MySQL as a local database.  Implement two models with a one to many parent­child relationship.  API should accept POST requests ( Content­Typeapplication/json) to create objects and persist them to a database.   Additionally, implement GET endpoints for each model (accessed by primary key) such that associated objects are returned e.g.  requests on parent objects should nest children as a JSON array.  For example:
+Create a simple RESTful API in Ruby using Rails and ActiveRecord. Use PostgreSQL as a local database.  Implement two models with a one to many parent­-child relationship.  API should accept POST requests (Content­Typeapplication/json) to create  objects and persist them to a database.   Additionally, implement GET endpoints for each model (accessed by primary key) such  that associated objects are returned  e.g. requests on parent objects should nest children as a JSON array.  For example:
 
 ```javascript
 { "name" : "Parent",
@@ -32,8 +32,6 @@ requests on a child object should also include a parent element.
 }
 ```
 
-Implementation should be simple and doesn’t need to handle edge cases, but comment on design considerations and potential scalability issues. Make use of any Python packages or Ruby gems that will simplify the task.  Please gzip and email us the resulting project or host it in GitHub for review.
-
 
 ## Planning
 
@@ -57,7 +55,7 @@ Parents and Children Tables
 * Rake (10.5.0, 10.4.2)
 
 
-## Steps I followed:
+## Steps I followed
 
 ```ruby
 $ rails new code_test_api -T --database=postgresql
@@ -125,3 +123,4 @@ j.save
 
 created app/controllers/parents_controller.rb and app/controllers/children_controller.rb
 
+added routes
