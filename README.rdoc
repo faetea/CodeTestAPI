@@ -1,28 +1,59 @@
-== README
+== Code Test API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Prompt:
 
-Things you may want to cover:
+Create a simple RESTful API in either Python using sqlalchemy and Flask or in Ruby using Rails and ActiveRecord. Use PostgreSQL or MySQL as a local database.  Implement two models with a one to many parent­child relationship.  API should accept POST requests ( Content­Typeapplication/json) to create objects and persist them to a database.   Additionally, implement GET endpoints for each model (accessed by primary key) such that associated objects are returned e.g.  requests on parent objects should nest children as a JSON array.  For example:
 
-* Ruby version
+{ "name" : "Parent",
+  "id" : 1,
+  "children" : [
+    {
+      "id" : 1,
+      "name" : "Child One"
+    },
+    {
+      "id" : 2,
+      "name" : "Child Two"
+    }
+  ]
+} 
 
-* System dependencies
+requests on a child object should also include a parent element.
 
-* Configuration
+{ "name" : "Child One",
+  "id" : 1,
+  "parent" : {
+    "id" : 1,
+    "name" : "Parent"
+  }
+}
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Implementation should be simple and doesn’t need to handle edge cases, but comment on design considerations and potential scalability issues. Make use of any Python packages or Ruby gems that will simplify the task.  Please gzip and email us the resulting project or host it in GitHub for review.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+# Planning
+
+![One To Many](/planning/IMG1_one-to-many.jpg)
+
+Two models with a one to many relationship.
+
+![Relationship](/planning/IMG2_relationship.jpg)
+
+Class Relationships
+
+
+# To get the API up and running
+
+* Ruby (2.2.3p173)
+* Rails (4.2.4)
+* Rake (10.5.0, 10.4.2)
+
+
+# Steps I followed:
+
+$ rails new code_test_api -T --database=postgresql
+ran into brew/pg error, used brew doctor to link psql and get gem installed
+$ rake db:create
+$ rails g migration CreateParents
+      invoke  active_record
+      create    db/migrate/20160302020255_create_parents.rb
