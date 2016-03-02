@@ -41,7 +41,7 @@ Implementation should be simple and doesn’t need to handle edge cases, but com
 
 Two models with a one to many relationship.
 
-![relationship](/planning/IMG2_relatipnship.jpg)
+![relationship](/planning/IMG2_relationship.jpg)
 
 Class Relationships
 
