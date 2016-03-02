@@ -1,17 +1,17 @@
 class ChildrenController < ApplicationController
 
   def index     # GET, view *all* children
-    render json: Child.all
+    render json: Child.all.as_json(only: [:id, :name], include: [:parent])
   end
 
   def show      # GET, view *one* child
-    render json: Child.find(params[:id])
+    render json: Child.find(params[:id]).as_json(only: [:id, :name], include: [:parent])
   end
 
   def create    # POST
     child = Child.create(child_params)
     if child.save
-      render json: child
+      render json: child, status: :created
     else
       render json: child.errors, status: :unprocessable_entity
     end
