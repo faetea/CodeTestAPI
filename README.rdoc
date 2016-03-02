@@ -1,9 +1,10 @@
-== Code Test API
+# Code Test API
 
-# Prompt:
+## Prompt:
 
 Create a simple RESTful API in either Python using sqlalchemy and Flask or in Ruby using Rails and ActiveRecord. Use PostgreSQL or MySQL as a local database.  Implement two models with a one to many parent­child relationship.  API should accept POST requests ( Content­Typeapplication/json) to create objects and persist them to a database.   Additionally, implement GET endpoints for each model (accessed by primary key) such that associated objects are returned e.g.  requests on parent objects should nest children as a JSON array.  For example:
 
+```javascript
 { "name" : "Parent",
   "id" : 1,
   "children" : [
@@ -17,9 +18,11 @@ Create a simple RESTful API in either Python using sqlalchemy and Flask or in Ru
     }
   ]
 } 
+```
 
 requests on a child object should also include a parent element.
 
+```javascript
 { "name" : "Child One",
   "id" : 1,
   "parent" : {
@@ -27,58 +30,72 @@ requests on a child object should also include a parent element.
     "name" : "Parent"
   }
 }
+```
 
 Implementation should be simple and doesn’t need to handle edge cases, but comment on design considerations and potential scalability issues. Make use of any Python packages or Ruby gems that will simplify the task.  Please gzip and email us the resulting project or host it in GitHub for review.
 
 
-# Planning
+## Planning
 
-![One To Many](/planning/IMG1_one-to-many.jpg)
+![one-to-many](CodeTestAPI/planning/IMG1_one-to-many.jpg)
 
 Two models with a one to many relationship.
 
-![Relationship](/planning/IMG2_relationship.jpg)
+![relationship](CodeTestAPI/planning/IMG2_relatipnship.jpg)
 
 Class Relationships
 
-![dbTables](/planning/IMG3_tables.jpg)
+![dbtables](CodeTestAPI/planning/IMG3_tables.jpg)
 
 Parents and Children Tables
 
 
-# To get the API up and running
+## To get the API up and running
 
 * Ruby (2.2.3p173)
 * Rails (4.2.4)
 * Rake (10.5.0, 10.4.2)
 
 
-# Steps I followed:
+## Steps I followed:
 
+```ruby
 $ rails new code_test_api -T --database=postgresql
+```
+
 ran into brew/pg error, used brew doctor to link psql and get gem installed
 
+```ruby
 $ rake db:create
 $ rails g migration CreateParents
       invoke  active_record
       create    db/migrate/20160302020255_create_parents.rb
+```
+
 added t.string :name
+
+```ruby
 $ rake db:migrate
       20160302020255 CreateParents: migrating
       create_table(:parents)
-
 $ rails g migration CreateChildren
       invoke  active_record
       create    db/migrate/20160302023118_create_children.rb
+```
+
 added t.string :name and t.integer :parent_id
+
+```ruby
 $ rake db:migrate
       20160302023118 CreateChildren: migrating
       create_table(:children)
+```
 
 created app/models/parent.rb and app/models/child.rb
 
 used irb to insert models into db
 
+```ruby
 p = Parent.new
 p.name = "Leia"
 p.save
@@ -104,3 +121,4 @@ j.save
   SQL (0.3ms)  INSERT INTO "children" ("name", "parent_id") VALUES ($1, $2) RETURNING "id"  [["name", "Jacen"], ["parent_id", 1]]
    (1.3ms)  COMMIT
 => true
+```
