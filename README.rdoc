@@ -53,7 +53,20 @@ Class Relationships
 
 $ rails new code_test_api -T --database=postgresql
 ran into brew/pg error, used brew doctor to link psql and get gem installed
+
 $ rake db:create
 $ rails g migration CreateParents
       invoke  active_record
       create    db/migrate/20160302020255_create_parents.rb
+added t.string :name
+$ rake db:migrate
+      20160302020255 CreateParents: migrating
+      create_table(:parents)
+
+$ rails g migration CreateChildren
+      invoke  active_record
+      create    db/migrate/20160302023118_create_children.rb
+added t.string :name and t.integer :parent_id
+$ rake db:migrate
+      20160302023118 CreateChildren: migrating
+      create_table(:children)
