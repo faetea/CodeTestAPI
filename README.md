@@ -122,3 +122,6 @@ j.save
    (1.3ms)  COMMIT
 => true
 ```
+
+created app/controllers/parents_controller.rb and app/controllers/children_controller.rb
+
