@@ -41,6 +41,10 @@ Two models with a one to many relationship.
 
 Class Relationships
 
+![dbTables](/planning/IMG3_tables.jpg)
+
+Parents and Children Tables
+
 
 # To get the API up and running
 
@@ -70,3 +74,33 @@ added t.string :name and t.integer :parent_id
 $ rake db:migrate
       20160302023118 CreateChildren: migrating
       create_table(:children)
+
+created app/models/parent.rb and app/models/child.rb
+
+used irb to insert models into db
+
+p = Parent.new
+p.name = "Leia"
+p.save
+   (0.3ms)  BEGIN
+  SQL (0.6ms)  INSERT INTO "parents" ("name") VALUES ($1) RETURNING "id"  [["name", "Leia"]]
+   (1.2ms)  COMMIT
+=> true
+
+c = Child.new
+c.name = "Jaina"
+c.parent_id = 1
+c.save
+   (0.2ms)  BEGIN
+  SQL (0.7ms)  INSERT INTO "children" ("parent_id", "name") VALUES ($1, $2) RETURNING "id"  [["parent_id", 1], ["name", "Jaina"]]
+   (1.3ms)  COMMIT
+=> true
+
+j = Child.new
+j.name = "Jacen"
+j.parent_id = 1
+j.save
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO "children" ("name", "parent_id") VALUES ($1, $2) RETURNING "id"  [["name", "Jacen"], ["parent_id", 1]]
+   (1.3ms)  COMMIT
+=> true
