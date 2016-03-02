@@ -124,3 +124,5 @@ j.save
 created app/controllers/parents_controller.rb and app/controllers/children_controller.rb
 
 added routes
+
+added gem 'rack-cors', :require => 'rack/cors' to gemfile, bundle install
