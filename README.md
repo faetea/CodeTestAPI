@@ -37,15 +37,15 @@ Implementation should be simple and doesn’t need to handle edge cases, but com
 
 ## Planning
 
-![one-to-many](CodeTestAPI/planning/IMG1_one-to-many.jpg)
+![one-to-many](/planning/IMG1_one-to-many.jpg)
 
 Two models with a one to many relationship.
 
-![relationship](CodeTestAPI/planning/IMG2_relatipnship.jpg)
+![relationship](/planning/IMG2_relatipnship.jpg)
 
 Class Relationships
 
-![dbtables](CodeTestAPI/planning/IMG3_tables.jpg)
+![dbtables](/planning/IMG3_tables.jpg)
 
 Parents and Children Tables
 
